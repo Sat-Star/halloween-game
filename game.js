@@ -1,4 +1,5 @@
 var playerPosition = 1;
+var isActive = 0;
 
 const dice = document.getElementById("dice");
 const face = document.getElementById("face");
@@ -9,6 +10,23 @@ const opt = document.getElementById("options");
 
 const qcont = document.getElementsByClassName("question-container")[0];
 //qcont.style.display = 'none';
+
+const refresh = document.getElementById("reload");
+
+let rotation = 0;
+refresh.addEventListener("click", function () {
+    rotation += 360;
+    this.style.transform = `rotate(${rotation}deg)`;
+    if(playerPosition<=31)
+    document.getElementById("cell-" + (playerPosition)).innerHTML = (playerPosition);
+    playerPosition = 1;
+    document.getElementById("cell-" + playerPosition).innerHTML = "<img id='counter' class = 'img' src='icon.png'></img>" + playerPosition;
+
+    qcont.style.display = 'block';
+    quest.innerHTML = "WELCOME TO HALLOWEEN BOARD. CLICK ON THE DICE TO START<br><br>Wait and answer the question if your pointer lands on a GRAVEYARD";
+    opt.innerHTML = "";
+});
+
 
 const trivia = {
     3: 'triv', 7: 'triv', 14: 'triv', 16: 'triv', 24: 'triv', 30: 'triv'
@@ -82,6 +100,7 @@ const optionss = {
 document.getElementById("cell-" + playerPosition).innerHTML = "<img id='counter' class = 'img' src='icon.png'></img>" + playerPosition;
 
 dice.addEventListener("click", () => {
+    if (isActive == 0){
     dice.classList.remove("roll-animation");
     dice.offsetWidth;
     dice.classList.add("roll-animation");
@@ -96,7 +115,10 @@ dice.addEventListener("click", () => {
 
     setTimeout(function () {
         checkP();
-    }, rollResult * 1000);
+    }, rollResult * 1000);}
+    else{
+        alert("Please answer the question first");
+    }
 });
 
 function move(rollResult) {
@@ -114,7 +136,7 @@ function move(rollResult) {
                     step();
                 }, 800);
             }
-            else{
+            else {
                 checkP();
             }
         }
@@ -124,10 +146,11 @@ function move(rollResult) {
 
 function checkP() {
     if (trivia[playerPosition] == 'triv') {
+        isActive = 1;
         quest.innerHTML = qs[playerPosition];
         opt.innerHTML = optionss[playerPosition];
         qcont.style.display = 'block';
-        console.log(`Displaying question for playerPosition ${playerPosition}`);
+        //console.log(`Displaying question for playerPosition ${playerPosition}`);
     }
     else if (playerPosition >= 31) {
         document.getElementById("cell-31").innerHTML = "<img id='counter' class = 'img' src='icon.png'></img>" + 31;
@@ -148,37 +171,44 @@ function checkP() {
                 const green = document.getElementById('opt3');
                 green.style.backgroundColor = 'green';
                 answered = 1;
+                isActive = 0;
             }
             else if (playerPosition == 7 && userChoice === "B. Ireland") {
                 const green = document.getElementById('opt2');
                 green.style.backgroundColor = 'green';
                 answered = 1;
+                isActive = 0;
             }
             else if (playerPosition == 14 && userChoice === "A. Broomsticks") {
                 const green = document.getElementById('opt1');
                 green.style.backgroundColor = 'green';
                 answered = 1;
+                isActive = 0;
             }
             else if (playerPosition == 16 && userChoice === "A. Dia de los Muertos") {
                 const green = document.getElementById('opt1');
                 green.style.backgroundColor = 'green';
                 answered = 1;
+                isActive = 0;
             }
             else if (playerPosition == 24 && userChoice === "A. Apples") {
                 const green = document.getElementById('opt1');
                 green.style.backgroundColor = 'green';
                 answered = 1;
+                isActive = 0;
             }
             else if (playerPosition == 30 && userChoice === "A. Samhain") {
                 const green = document.getElementById('opt1');
                 green.style.backgroundColor = 'green';
                 answered = 1;
+                isActive = 0;
             } else {
                 option.style.backgroundColor = 'red';
-                setTimeout(function(){
-                opt.innerHTML = `<div class = "option">INCORRECT, you move backward by <b>1 STEP</b><br>BETTER LUCK NEXT TIME</div>`;
-                },1500);
+                setTimeout(function () {
+                    opt.innerHTML = `<div class = "option">INCORRECT, you move backward by <b>1 STEP</b><br>BETTER LUCK NEXT TIME</div>`;
+                }, 1500);
                 answered = 1;
+                isActive = 0;
                 playerPosition--;
                 document.getElementById("cell-" + (playerPosition + 1)).innerHTML = (playerPosition + 1);
                 document.getElementById("cell-" + playerPosition).innerHTML = "<img id='counter' class = 'img' src='icon.png'></img>" + playerPosition;
