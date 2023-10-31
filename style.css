@@ -1,0 +1,141 @@
+body {
+    background-image: url('https://wallpaperaccess.com/full/1212259.jpg');
+}
+
+table {
+    width: 700px;
+    height: 500px;
+    margin-top: 70px;
+    /* margin-left: 400px; */
+}
+
+table,
+td {
+    border: 1px solid black;
+    border-radius: 10px;
+    border-style: inset;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cell {
+    font-size: 50px;
+    color: aliceblue;
+    position: relative;
+}
+
+#cell-3,
+#cell-7,
+#cell-14,
+#cell-16,
+#cell-24,
+#cell-30 {
+    background: url('https://static.wixstatic.com/media/835df3_e053917a622d4d2abb607f9bd3081086~mv2.png/v1/fill/w_324,h_276,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Tombstone.png');
+    background-size: 100% 100%;
+}
+
+#cell-9:hover,
+#cell-19:hover,
+#cell-28:hover,
+#cell-31:hover {
+    background: url('https://i.gifer.com/2gho.gif');
+    background-size: 100% 100%;
+}
+
+tr :hover {
+    background-color: orange;
+}
+
+.dice {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bolder;
+    transition: transform 1s ease-in-out;
+    transform-origin: center center;
+    animation: none;
+    perspective: 800px;
+    border-radius: 15px;
+    border-style: solid;
+    margin-top: 25px;
+}
+
+.roll-animation {
+    animation: roll 1.5s ease-in-out forwards;
+    transform-style: preserve-3d;
+}
+
+.dice:hover {
+    cursor: pointer;
+}
+
+@keyframes roll {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateX(720deg) rotateY(720deg);
+    }
+}
+
+#counter {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0 20px 90px white;
+    border-radius: 35px;
+    background-color: transparent;
+    margin-left: 0x;
+}
+
+/* #cl{
+    color: aliceblue;
+    font-size: 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    display: inline-flex;
+} */
+
+.question-container {
+    margin-top: 15px;
+    background-color: #3a3a3a;
+    border: 2px solid #ff8c00;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#question {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.option {
+    background-color: #ff8c00;
+    color: #000;
+    border: 2px solid #ff8c00;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.option:hover {
+    background-color: #e66300;
+    color: #fff;
+}
