@@ -174,7 +174,10 @@ function checkP() {
                 green.style.backgroundColor = 'green';
                 answered = 1;
             } else {
+                option.style.backgroundColor = 'red';
+                setTimeout(function(){
                 opt.innerHTML = `<div class = "option">INCORRECT, you move backward by <b>1 STEP</b><br>BETTER LUCK NEXT TIME</div>`;
+                },1500);
                 answered = 1;
                 playerPosition--;
                 document.getElementById("cell-" + (playerPosition + 1)).innerHTML = (playerPosition + 1);
@@ -184,7 +187,7 @@ function checkP() {
             if (answered == 1) {
                 setTimeout(function () {
                     qcont.style.display = 'none';
-                }, 2500);
+                }, 3000);
             }
         });
     });
