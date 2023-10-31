@@ -15,10 +15,13 @@ const refresh = document.getElementById("reload");
 
 let rotation = 0;
 refresh.addEventListener("click", function () {
+    isActive = 0;
     rotation += 360;
     this.style.transform = `rotate(${rotation}deg)`;
     if(playerPosition<=31)
     document.getElementById("cell-" + (playerPosition)).innerHTML = (playerPosition);
+    else if(playerPosition >= 31)
+    document.getElementById("cell-31").innerHTML = 31;
     playerPosition = 1;
     document.getElementById("cell-" + playerPosition).innerHTML = "<img id='counter' class = 'img' src='icon.png'></img>" + playerPosition;
 
